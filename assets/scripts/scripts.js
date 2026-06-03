@@ -1,0 +1,87 @@
+const knives = [
+  "assets/images/5117.jpg",
+  "assets/images/5118.jpg",
+  "assets/images/5119.jpg",
+  "assets/images/5120.jpg",
+  "assets/images/5121.jpg",
+  "assets/images/5122.jpg",
+  "assets/images/5123.jpg",
+  "assets/images/5124.jpg",
+  "assets/images/5125.jpg",
+  "assets/images/5126.jpg",
+  "assets/images/5127.jpg",
+  "assets/images/5128.jpg",
+  "assets/images/5129.jpg",
+  "assets/images/5130.jpg",
+  "assets/images/5131.jpg",
+  "assets/images/5132.jpg",
+  "assets/images/5133.jpg",
+  "assets/images/5134.jpg",
+  "assets/images/5135.jpg",
+  "assets/images/5136.jpg"
+];
+
+const knifeGrid = document.getElementById("knifeGrid");
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+const modal = document.getElementById("knifeModal");
+const closeModal = document.getElementById("closeModal");
+const modalImage = document.getElementById("modalImage");
+
+function displayKnives() {
+  knifeGrid.innerHTML = "";
+
+  knives.forEach((image, index) => {
+    const card = document.createElement("div");
+    card.classList.add("knife-card");
+
+    card.innerHTML = `
+      <img src="${image}" alt="Crazy J handmade knife ${index + 1}">
+      <div class="knife-info">
+        <h3>Handmade Knife ${index + 1}</h3>
+        <p>Click to view full image</p>
+      </div>
+    `;
+
+    card.addEventListener("click", () => {
+      openModal(image);
+    });
+
+    knifeGrid.appendChild(card);
+  });
+}
+
+function openModal(image) {
+  modalImage.src = image;
+  modal.classList.add("show");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+
+function closeKnifeModal() {
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  modalImage.src = "";
+}
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+});
+
+closeModal.addEventListener("click", closeKnifeModal);
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) {
+    closeKnifeModal();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeKnifeModal();
+  }
+});
+
+displayKnives();

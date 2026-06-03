@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crazy J Knives | Handmade American Knives</title>
+  <link rel="stylesheet" href="assets/style/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="navbar">
+    <h1 class="logo">Crazy J <span>Knives</span></h1>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#knives">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu">☰</button>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p class="badge">Veteran Owned • Handmade • 100% Made In The USA</p>
+
+    <h2>Handmade Knives Built With American Steel & Country Grit</h2>
+
+    <p>
+      Crazy J Knives creates handcrafted knives designed for hunters,
+      outdoorsmen, collectors, and everyday carry. Every blade is hand-finished,
+      built with pride, and made right here in America.
+    </p>
+
+    <a href="#knives" class="btn">View Gallery</a>
+  </div>
+</section>
+
+<section class="features">
+  <div>
+    <h3>Veteran Owned</h3>
+    <p>Built with discipline, pride, and true American craftsmanship.</p>
+  </div>
+
+  <div>
+    <h3>Handmade Quality</h3>
+    <p>Every knife is shaped, sharpened, and finished by hand.</p>
+  </div>
+
+  <div>
+    <h3>Made In USA</h3>
+    <p>American-made craftsmanship from start to finish.</p>
+  </div>
+</section>
+
+<section class="section" id="knives">
+  <div class="section-title">
+    <p>Featured Collection</p>
+    <h2>Handmade Knife Gallery</h2>
+  </div>
+
+  <div class="knife-grid" id="knifeGrid"></div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-text">
+    <p class="section-label">About Crazy J</p>
+
+    <h2>American Craftsmanship With A Rugged Edge</h2>
+
+    <p>
+      Crazy J Knives is a veteran-owned knife company focused on handcrafted,
+      dependable blades built with care and precision.
+    </p>
+
+    <p>
+      No mass production. No shortcuts. Just honest craftsmanship and dependable
+      blades built to last.
+    </p>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="section-title">
+    <p>The Process</p>
+    <h2>How Each Knife Is Made</h2>
+  </div>
+
+  <div class="process-grid">
+    <div>
+      <span>01</span>
+      <h3>Blade Selection</h3>
+      <p>Quality steel is selected for durability and performance.</p>
+    </div>
+
+    <div>
+      <span>02</span>
+      <h3>Hand Finishing</h3>
+      <p>Every blade is hand-shaped and polished individually.</p>
+    </div>
+
+    <div>
+      <span>03</span>
+      <h3>Handle Work</h3>
+      <p>Handles are fitted for comfort, grip, and durability.</p>
+    </div>
+
+    <div>
+      <span>04</span>
+      <h3>Final Inspection</h3>
+      <p>Every knife is sharpened, cleaned, and inspected before delivery.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-title">
+    <p>Contact</p>
+    <h2>Request A Knife Or Custom Build</h2>
+  </div>
+
+  <form
+    class="contact-form"
+    action="mailto:philipjjohnson@gmail.com"
+    method="post"
+    enctype="text/plain"
+  >
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="Name" placeholder="Your Name" required>
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="Email" placeholder="Email Address" required>
+
+    <label for="interest">What are you interested in?</label>
+    <select id="interest" name="Interest" required>
+      <option value="">Choose One</option>
+      <option>Buying A Knife</option>
+      <option>Custom Knife Build</option>
+      <option>General Question</option>
+    </select>
+
+    <label for="message">Message</label>
+    <textarea
+      id="message"
+      name="Message"
+      placeholder="Tell us what kind of knife you are looking for..."
+      required
+    ></textarea>
+
+    <button class="btn" type="submit">Send Request</button>
+  </form>
+</section>
+
+</main>
+
+<footer>
+  <h2>Crazy J Knives</h2>
+  <p>Veteran Owned • Handmade • 100% Made In The USA</p>
+  <p class="copyright">© 2026 Crazy J Knives. All Rights Reserved.</p>
+</footer>
+
+<div class="modal" id="knifeModal" aria-hidden="true">
+  <div class="modal-box">
+    <button id="closeModal" type="button" aria-label="Close image">×</button>
+    <img id="modalImage" src="" alt="Knife Preview">
+  </div>
+</div>
+
+<script src="assets/scripts/scripts.js"></script>
+
+</body>
+</html>
