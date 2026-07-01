@@ -391,10 +391,10 @@ select:focus {
   background: linear-gradient(145deg, #18130f, #0e0c09);
   border: 1px solid rgba(196, 142, 74, 0.28);
   overflow: hidden;
-  transition: 0.35s ease;
-  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
   cursor: pointer;
   position: relative;
+  transition: all .35s ease;
+  box-shadow: 0 16px 35px rgba(0,0,0,.35);
 }
 
 .knife-card:nth-child(4n + 1) img {
@@ -413,17 +413,21 @@ select:focus {
   height: 270px;
 }
 
-.knife-card:hover {
-  transform: translateY(-8px);
-  border-color: #c48e4a;
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.6);
+.knife-card:hover{
+    transform:translateY(-8px);
+    border-color:#c48e4a;
+    box-shadow:
+        0 28px 60px rgba(0,0,0,.6),
+        0 0 18px rgba(196,142,74,.28);
 }
 
-.knife-card img {
-  width: 100%;
-  object-fit: cover;
-  display: block;
-  transition: 0.55s ease;
+.knife-card img{
+    width:100%;
+    display:block;
+    object-fit:cover;
+    transition:
+        transform .7s ease,
+        filter .7s ease;
 }
 
 .knife-card:hover img {
@@ -692,4 +696,53 @@ footer p {
   .intro-text {
     font-size: 40px;
   }
+}
+
+/* Metallic sweep */
+
+.knife-card::before{
+    content:"";
+    position:absolute;
+    top:-120%;
+    left:-150%;
+    width:70%;
+    height:260%;
+    pointer-events:none;
+
+    background:linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255,255,255,0) 30%,
+    rgba(255,255,255,.20) 38%,
+    rgba(255,255,255,.75) 46%,
+    rgba(255,255,255,1) 50%,
+    rgba(255,255,255,.75) 54%,
+    rgba(255,255,255,.20) 62%,
+    transparent 100%
+);
+
+    transform:rotate(22deg);
+    opacity:0;
+}
+
+.knife-card:hover::before{
+    animation:bladeShine .9s ease forwards;
+}
+
+@keyframes bladeShine{
+
+    0%{
+        left:-170%;
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+        left:170%;
+        opacity:0;
+    }
+
 }
