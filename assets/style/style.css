@@ -746,3 +746,69 @@ footer p {
     }
 
 }
+
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(196, 142, 74, 0.9);
+  color: #111;
+  border: none;
+  width: 48px;
+  height: 62px;
+  font-size: 48px;
+  cursor: pointer;
+  z-index: 5;
+  transition: 0.3s;
+}
+
+.modal-arrow:hover {
+  background: #e0aa62;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.modal-prev {
+  left: -24px;
+}
+
+.modal-next {
+  right: -24px;
+}
+
+.modal-counter {
+  text-align: center;
+  color: #c48e4a;
+  margin-top: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.spark {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #e0aa62;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 10px #e0aa62, 0 0 18px #c48e4a;
+  animation: sparkFly 0.7s ease-out forwards;
+  z-index: 10;
+}
+
+@keyframes sparkFly {
+  to {
+    transform: translate(var(--x), var(--y)) scale(0);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .modal-prev {
+    left: 8px;
+  }
+
+  .modal-next {
+    right: 8px;
+  }
+}

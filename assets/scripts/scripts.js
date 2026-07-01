@@ -38,9 +38,14 @@ const navLinks = document.getElementById("navLinks");
 const modal = document.getElementById("knifeModal");
 const closeModal = document.getElementById("closeModal");
 const modalImage = document.getElementById("modalImage");
+const modalCounter = document.getElementById("modalCounter");
+const prevKnife = document.getElementById("prevKnife");
+const nextKnife = document.getElementById("nextKnife");
 
 const intro = document.getElementById("intro");
 const year = document.getElementById("year");
+
+let currentKnifeIndex = 0;
 
 document.body.classList.add("intro-active");
 
@@ -74,18 +79,32 @@ function displayKnives() {
     `;
 
     card.addEventListener("click", () => {
-      openModal(image);
+      openModal(index);
+      playKnifeClick();
     });
+
+    card.addEventListener("mousemove", createSpark);
 
     knifeGrid.appendChild(card);
   });
 }
 
-function openModal(image) {
-  modalImage.src = image;
+function openModal(index) {
+  currentKnifeIndex = index;
+  updateModalImage();
+
   modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
+}
+
+function updateModalImage() {
+  modalImage.src = knives[currentKnifeIndex];
+  modalImage.alt = `Crazy J handmade knife ${currentKnifeIndex + 1}`;
+
+  if (modalCounter) {
+    modalCounter.textContent = `${currentKnifeIndex + 1} / ${knives.length}`;
+  }
 }
 
 function closeKnifeModal() {
@@ -93,6 +112,45 @@ function closeKnifeModal() {
   modal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
   modalImage.src = "";
+}
+
+function showNextKnife() {
+  currentKnifeIndex = (currentKnifeIndex + 1) % knives.length;
+  updateModalImage();
+  playKnifeClick();
+}
+
+function showPreviousKnife() {
+  currentKnifeIndex = (currentKnifeIndex - 1 + knives.length) % knives.length;
+  updateModalImage();
+  playKnifeClick();
+}
+
+function playKnifeClick() {
+  const sound = new Audio("assets/sounds/knife-click.mp3");
+  sound.volume = 0.35;
+  sound.play().catch(() => {});
+}
+
+function createSpark(event) {
+  if (Math.random() > 0.18) return;
+
+  const card = event.currentTarget;
+  const spark = document.createElement("span");
+  spark.classList.add("spark");
+
+  const rect = card.getBoundingClientRect();
+
+  spark.style.left = `${event.clientX - rect.left}px`;
+  spark.style.top = `${event.clientY - rect.top}px`;
+  spark.style.setProperty("--x", `${Math.random() * 80 - 40}px`);
+  spark.style.setProperty("--y", `${Math.random() * -80 - 20}px`);
+
+  card.appendChild(spark);
+
+  setTimeout(() => {
+    spark.remove();
+  }, 700);
 }
 
 if (menuBtn && navLinks) {
@@ -107,21 +165,29 @@ document.querySelectorAll(".nav-links a").forEach(link => {
   });
 });
 
-if (closeModal) {
-  closeModal.addEventListener("click", closeKnifeModal);
-}
+closeModal.addEventListener("click", closeKnifeModal);
+nextKnife.addEventListener("click", showNextKnife);
+prevKnife.addEventListener("click", showPreviousKnife);
 
-if (modal) {
-  modal.addEventListener("click", event => {
-    if (event.target === modal) {
-      closeKnifeModal();
-    }
-  });
-}
+modal.addEventListener("click", event => {
+  if (event.target === modal) {
+    closeKnifeModal();
+  }
+});
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && modal.classList.contains("show")) {
+  if (!modal.classList.contains("show")) return;
+
+  if (event.key === "Escape") {
     closeKnifeModal();
+  }
+
+  if (event.key === "ArrowRight") {
+    showNextKnife();
+  }
+
+  if (event.key === "ArrowLeft") {
+    showPreviousKnife();
   }
 });
 
