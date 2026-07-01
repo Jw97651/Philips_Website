@@ -21,16 +21,18 @@ body.intro-active {
 
 /* INTRO KNIFE CUT ANIMATION */
 
+/* INTRO KNIFE CUT ANIMATION */
+
 .intro {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #050403;
+  background: #030201;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: introGone 3.1s ease forwards;
+  animation: introGone 6.3s ease forwards;
 }
 
 .intro-text {
@@ -39,9 +41,9 @@ body.intro-active {
   color: #c48e4a;
   font-size: clamp(38px, 8vw, 90px);
   font-weight: bold;
-  letter-spacing: 3px;
-  text-shadow: 0 0 25px rgba(196, 142, 74, 0.6);
-  animation: textFade 2.4s ease forwards;
+  letter-spacing: 4px;
+  text-shadow: 0 0 25px rgba(196, 142, 74, 0.55);
+  animation: textFade 5.2s ease forwards;
 }
 
 .intro-top,
@@ -50,139 +52,156 @@ body.intro-active {
   left: 0;
   width: 100%;
   height: 50%;
-  background:
-    radial-gradient(circle at center, rgba(196, 142, 74, 0.08), transparent 45%),
-    #050403;
+  background: #030201;
   z-index: 2;
 }
 
 .intro-top {
   top: 0;
-  animation: topCut 2.8s ease forwards;
+  transform-origin: bottom left;
+  animation: topCut 6s ease forwards;
 }
 
 .intro-bottom {
   bottom: 0;
-  animation: bottomCut 2.8s ease forwards;
+  transform-origin: top right;
+  animation: bottomCut 6s ease forwards;
 }
 
 .knife-slash {
   position: absolute;
-  width: 180px;
-  height: 18px;
-  background: linear-gradient(90deg, transparent, #f5ead8, #9c9c9c, transparent);
-  border-radius: 100px;
+  width: 260px;
+  height: 26px;
+  background:
+    linear-gradient(90deg, transparent 0%, #d7d7d7 18%, #ffffff 45%, #777 70%, transparent 100%);
+  border-radius: 100px 8px 8px 100px;
   transform: rotate(-28deg);
   box-shadow:
-    0 0 18px rgba(255, 255, 255, 0.9),
-    0 0 45px rgba(196, 142, 74, 0.7);
-  z-index: 6;
-  animation: bladeMove 1.25s ease-in-out forwards;
+    0 0 12px rgba(255, 255, 255, 0.75),
+    0 0 35px rgba(196, 142, 74, 0.45);
+  z-index: 7;
+  animation: bladeMove 3.4s cubic-bezier(0.18, 0.72, 0.28, 1) forwards;
+}
+
+.knife-slash::before {
+  content: "";
+  position: absolute;
+  left: -65px;
+  top: -14px;
+  width: 80px;
+  height: 54px;
+  background: linear-gradient(90deg, #2a160c, #8b5a2b, #c48e4a);
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 .knife-slash::after {
   content: "";
   position: absolute;
-  right: -35px;
-  top: -11px;
-  width: 55px;
-  height: 40px;
-  background: linear-gradient(90deg, #3a2415, #c48e4a);
-  border-radius: 8px;
-  box-shadow: 0 0 14px rgba(196, 142, 74, 0.4);
+  right: -32px;
+  top: 3px;
+  width: 60px;
+  height: 20px;
+  background: linear-gradient(90deg, #ffffff, transparent);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
 .cut-glow {
   position: absolute;
   width: 0;
-  height: 5px;
-  background: linear-gradient(90deg, transparent, #fff, #c48e4a, transparent);
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #fff, #c48e4a, #fff, transparent);
   transform: rotate(-28deg);
-  z-index: 7;
+  z-index: 6;
   box-shadow:
-    0 0 18px #fff,
-    0 0 40px #c48e4a,
-    0 0 70px rgba(196, 142, 74, 0.8);
-  animation: cutGlow 2.2s ease forwards;
+    0 0 12px #fff,
+    0 0 25px #c48e4a,
+    0 0 45px rgba(196, 142, 74, 0.75);
+  animation: cutGlow 5.4s ease forwards;
 }
 
 @keyframes bladeMove {
   0% {
-    transform: translate(-120vw, -35vh) rotate(-28deg);
+    transform: translate(-120vw, -42vh) rotate(-28deg);
     opacity: 0;
   }
 
-  15% {
+  12% {
+    opacity: 1;
+  }
+
+  72% {
+    transform: translate(18vw, 5vh) rotate(-28deg);
     opacity: 1;
   }
 
   100% {
-    transform: translate(120vw, 35vh) rotate(-28deg);
+    transform: translate(120vw, 42vh) rotate(-28deg);
     opacity: 0;
   }
 }
 
 @keyframes cutGlow {
-  0%, 35% {
+  0%, 38% {
     width: 0;
     opacity: 0;
   }
 
-  45% {
-    width: 120vw;
+  55% {
+    width: 130vw;
     opacity: 1;
   }
 
-  75% {
-    width: 120vw;
+  78% {
+    width: 130vw;
     opacity: 1;
   }
 
   100% {
-    width: 120vw;
+    width: 130vw;
     opacity: 0;
   }
 }
 
 @keyframes topCut {
-  0%, 55% {
-    transform: translateY(0) rotate(0);
+  0%, 68% {
+    transform: translateY(0);
   }
 
   100% {
-    transform: translateY(-120%) rotate(-4deg);
+    transform: translateY(-115%);
   }
 }
 
 @keyframes bottomCut {
-  0%, 55% {
-    transform: translateY(0) rotate(0);
+  0%, 68% {
+    transform: translateY(0);
   }
 
   100% {
-    transform: translateY(120%) rotate(-4deg);
+    transform: translateY(115%);
   }
 }
 
 @keyframes textFade {
   0% {
     opacity: 0;
-    transform: scale(0.92);
+    transform: scale(0.95);
   }
 
-  25%, 55% {
+  15%, 58% {
     opacity: 1;
     transform: scale(1);
   }
 
-  100% {
+  72%, 100% {
     opacity: 0;
-    transform: scale(1.12);
+    transform: scale(1.08);
   }
 }
 
 @keyframes introGone {
-  0%, 88% {
+  0%, 94% {
     opacity: 1;
     visibility: visible;
   }
