@@ -212,3 +212,10 @@ document.addEventListener("keydown", event => {
 });
 
 displayKnives();
+
+window.addEventListener("scroll", () => {
+  const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  const forgeY = 20 + scrollPercent * 70;
+
+  document.body.style.setProperty("--forge-y", `${forgeY}%`);
+});
