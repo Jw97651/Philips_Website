@@ -64,6 +64,8 @@ if (year) {
 }
 
 function displayKnives() {
+  if (!knifeGrid) return;
+
   knifeGrid.innerHTML = "";
 
   knives.forEach((image, index) => {
@@ -90,6 +92,8 @@ function displayKnives() {
 }
 
 function openModal(index) {
+  if (!modal || !modalImage) return;
+
   currentKnifeIndex = index;
   updateModalImage();
 
@@ -99,6 +103,8 @@ function openModal(index) {
 }
 
 function updateModalImage() {
+  if (!modalImage) return;
+
   modalImage.src = knives[currentKnifeIndex];
   modalImage.alt = `Crazy J handmade knife ${currentKnifeIndex + 1}`;
 
@@ -108,6 +114,8 @@ function updateModalImage() {
 }
 
 function closeKnifeModal() {
+  if (!modal || !modalImage) return;
+
   modal.classList.remove("show");
   modal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
@@ -161,22 +169,34 @@ if (menuBtn && navLinks) {
 
 document.querySelectorAll(".nav-links a").forEach(link => {
   link.addEventListener("click", () => {
-    navLinks.classList.remove("show");
+    if (navLinks) {
+      navLinks.classList.remove("show");
+    }
   });
 });
 
-closeModal.addEventListener("click", closeKnifeModal);
-nextKnife.addEventListener("click", showNextKnife);
-prevKnife.addEventListener("click", showPreviousKnife);
+if (closeModal) {
+  closeModal.addEventListener("click", closeKnifeModal);
+}
 
-modal.addEventListener("click", event => {
-  if (event.target === modal) {
-    closeKnifeModal();
-  }
-});
+if (nextKnife) {
+  nextKnife.addEventListener("click", showNextKnife);
+}
+
+if (prevKnife) {
+  prevKnife.addEventListener("click", showPreviousKnife);
+}
+
+if (modal) {
+  modal.addEventListener("click", event => {
+    if (event.target === modal) {
+      closeKnifeModal();
+    }
+  });
+}
 
 document.addEventListener("keydown", event => {
-  if (!modal.classList.contains("show")) return;
+  if (!modal || !modal.classList.contains("show")) return;
 
   if (event.key === "Escape") {
     closeKnifeModal();

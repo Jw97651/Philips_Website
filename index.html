@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crazy J Knives | Handmade American Knives</title>
-  <meta name="description" content="Handmade American knives by Crazy J Knives. Veteran-owned, handcrafted hunting, EDC, and custom knives built in the USA.">
+  <meta name="description" content="Handmade American knives by Crazy J Knives. Rugged handcrafted knife showcase built with American craftsmanship.">
   <link rel="stylesheet" href="assets/style/style.css">
 </head>
 
@@ -72,7 +72,7 @@
 <section class="section" id="knives">
   <div class="section-title">
     <p>Featured Collection</p>
-    <h2>Handmade Knife Gallery</h2>
+    <h2>The Blade Wall</h2>
   </div>
 
   <div class="knife-grid" id="knifeGrid"></div>
@@ -85,8 +85,8 @@
     <h2>American Craftsmanship With A Rugged Edge</h2>
 
     <p>
-      Crazy J Knives is a veteran-owned knife company focused on handcrafted,
-      dependable blades built with care and precision.
+      Crazy J Knives is focused on handcrafted, dependable blades built with
+      care, patience, and precision.
     </p>
 
     <p>
@@ -124,7 +124,7 @@
     <div>
       <span>04</span>
       <h3>Final Inspection</h3>
-      <p>Every knife is sharpened, cleaned, and inspected before delivery.</p>
+      <p>Every knife is sharpened, cleaned, and inspected before display.</p>
     </div>
   </div>
 </section>
@@ -132,7 +132,7 @@
 <section class="contact" id="contact">
   <div class="section-title">
     <p>Contact</p>
-    <h2>Request A Knife Or Custom Build</h2>
+    <h2>Ask About The Collection</h2>
   </div>
 
   <form
@@ -150,20 +150,20 @@
     <label for="interest">What are you interested in?</label>
     <select id="interest" name="Interest" required>
       <option value="">Choose One</option>
-      <option>Buying A Knife</option>
-      <option>Custom Knife Build</option>
-      <option>General Question</option>
+      <option>Ask About A Knife</option>
+      <option>Custom Craftsmanship Question</option>
+      <option>General Message</option>
     </select>
 
     <label for="message">Message</label>
     <textarea
       id="message"
       name="Message"
-      placeholder="Tell us what kind of knife you are looking for..."
+      placeholder="Tell us what you want to ask about..."
       required
     ></textarea>
 
-    <button class="btn" type="submit">Send Request</button>
+    <button class="btn" type="submit">Send Message</button>
   </form>
 </section>
 
@@ -178,7 +178,14 @@
 <div class="modal" id="knifeModal" aria-hidden="true">
   <div class="modal-box">
     <button id="closeModal" type="button" aria-label="Close image">×</button>
+
+    <button id="prevKnife" class="modal-arrow modal-prev" type="button" aria-label="Previous knife">‹</button>
+
     <img id="modalImage" src="" alt="Knife Preview">
+
+    <button id="nextKnife" class="modal-arrow modal-next" type="button" aria-label="Next knife">›</button>
+
+    <p id="modalCounter" class="modal-counter"></p>
   </div>
 </div>
 
