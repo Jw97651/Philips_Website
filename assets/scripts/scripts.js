@@ -46,9 +46,12 @@ document.body.classList.add("intro-active");
 
 window.addEventListener("load", () => {
   setTimeout(() => {
-    intro.style.display = "none";
+    if (intro) {
+      intro.style.display = "none";
+    }
+
     document.body.classList.remove("intro-active");
-  }, 3200);
+  }, 6400);
 });
 
 if (year) {
@@ -63,10 +66,10 @@ function displayKnives() {
     card.classList.add("knife-card");
 
     card.innerHTML = `
-      <img src="${image}" alt="Crazy J handmade knife ${index + 1}">
+      <img src="${image}" alt="Crazy J handmade knife ${index + 1}" loading="lazy">
       <div class="knife-info">
-        <h3>Handmade Knife ${index + 1}</h3>
-        <p>Click to view full image</p>
+        <h3>Handmade Blade ${index + 1}</h3>
+        <p>View Blade</p>
       </div>
     `;
 
@@ -92,9 +95,11 @@ function closeKnifeModal() {
   modalImage.src = "";
 }
 
-menuBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("show");
-});
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+  });
+}
 
 document.querySelectorAll(".nav-links a").forEach(link => {
   link.addEventListener("click", () => {
@@ -102,16 +107,20 @@ document.querySelectorAll(".nav-links a").forEach(link => {
   });
 });
 
-closeModal.addEventListener("click", closeKnifeModal);
+if (closeModal) {
+  closeModal.addEventListener("click", closeKnifeModal);
+}
 
-modal.addEventListener("click", event => {
-  if (event.target === modal) {
-    closeKnifeModal();
-  }
-});
+if (modal) {
+  modal.addEventListener("click", event => {
+    if (event.target === modal) {
+      closeKnifeModal();
+    }
+  });
+}
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
+  if (event.key === "Escape" && modal.classList.contains("show")) {
     closeKnifeModal();
   }
 });
