@@ -14,9 +14,187 @@ body {
   font-family: Georgia, "Times New Roman", serif;
 }
 
-body.modal-open {
+body.modal-open,
+body.intro-active {
   overflow: hidden;
 }
+
+/* INTRO KNIFE CUT ANIMATION */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #050403;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: introGone 3.1s ease forwards;
+}
+
+.intro-text {
+  position: absolute;
+  z-index: 5;
+  color: #c48e4a;
+  font-size: clamp(38px, 8vw, 90px);
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-shadow: 0 0 25px rgba(196, 142, 74, 0.6);
+  animation: textFade 2.4s ease forwards;
+}
+
+.intro-top,
+.intro-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background:
+    radial-gradient(circle at center, rgba(196, 142, 74, 0.08), transparent 45%),
+    #050403;
+  z-index: 2;
+}
+
+.intro-top {
+  top: 0;
+  animation: topCut 2.8s ease forwards;
+}
+
+.intro-bottom {
+  bottom: 0;
+  animation: bottomCut 2.8s ease forwards;
+}
+
+.knife-slash {
+  position: absolute;
+  width: 180px;
+  height: 18px;
+  background: linear-gradient(90deg, transparent, #f5ead8, #9c9c9c, transparent);
+  border-radius: 100px;
+  transform: rotate(-28deg);
+  box-shadow:
+    0 0 18px rgba(255, 255, 255, 0.9),
+    0 0 45px rgba(196, 142, 74, 0.7);
+  z-index: 6;
+  animation: bladeMove 1.25s ease-in-out forwards;
+}
+
+.knife-slash::after {
+  content: "";
+  position: absolute;
+  right: -35px;
+  top: -11px;
+  width: 55px;
+  height: 40px;
+  background: linear-gradient(90deg, #3a2415, #c48e4a);
+  border-radius: 8px;
+  box-shadow: 0 0 14px rgba(196, 142, 74, 0.4);
+}
+
+.cut-glow {
+  position: absolute;
+  width: 0;
+  height: 5px;
+  background: linear-gradient(90deg, transparent, #fff, #c48e4a, transparent);
+  transform: rotate(-28deg);
+  z-index: 7;
+  box-shadow:
+    0 0 18px #fff,
+    0 0 40px #c48e4a,
+    0 0 70px rgba(196, 142, 74, 0.8);
+  animation: cutGlow 2.2s ease forwards;
+}
+
+@keyframes bladeMove {
+  0% {
+    transform: translate(-120vw, -35vh) rotate(-28deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(120vw, 35vh) rotate(-28deg);
+    opacity: 0;
+  }
+}
+
+@keyframes cutGlow {
+  0%, 35% {
+    width: 0;
+    opacity: 0;
+  }
+
+  45% {
+    width: 120vw;
+    opacity: 1;
+  }
+
+  75% {
+    width: 120vw;
+    opacity: 1;
+  }
+
+  100% {
+    width: 120vw;
+    opacity: 0;
+  }
+}
+
+@keyframes topCut {
+  0%, 55% {
+    transform: translateY(0) rotate(0);
+  }
+
+  100% {
+    transform: translateY(-120%) rotate(-4deg);
+  }
+}
+
+@keyframes bottomCut {
+  0%, 55% {
+    transform: translateY(0) rotate(0);
+  }
+
+  100% {
+    transform: translateY(120%) rotate(-4deg);
+  }
+}
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  25%, 55% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes introGone {
+  0%, 88% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* WEBSITE */
 
 .site-header {
   position: fixed;
@@ -34,6 +212,7 @@ body.modal-open {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .logo {
@@ -393,7 +572,8 @@ footer p {
   .nav-links {
     display: none;
     position: absolute;
-    top: 70px;
+    top: 100%;
+    left: 0;
     right: 0;
     background: #090806;
     width: 100%;
@@ -425,5 +605,24 @@ footer p {
 
   .knife-card img {
     height: 240px;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero h2 {
+    font-size: 38px;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .intro-text {
+    font-size: 40px;
   }
 }

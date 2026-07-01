@@ -18,7 +18,17 @@ const knives = [
   "assets/images/5133.jpg",
   "assets/images/5134.jpg",
   "assets/images/5135.jpg",
-  "assets/images/5136.jpg"
+  "assets/images/5136.jpg",
+  "assets/images/5914.jpg",
+  "assets/images/5917.jpg",
+  "assets/images/5918.jpg",
+  "assets/images/5919.jpg",
+  "assets/images/5920.jpg",
+  "assets/images/5921.jpg",
+  "assets/images/5922.jpg",
+  "assets/images/5923.jpg",
+  "assets/images/5924.jpg",
+  "assets/images/5925.jpg"
 ];
 
 const knifeGrid = document.getElementById("knifeGrid");
@@ -28,6 +38,22 @@ const navLinks = document.getElementById("navLinks");
 const modal = document.getElementById("knifeModal");
 const closeModal = document.getElementById("closeModal");
 const modalImage = document.getElementById("modalImage");
+
+const intro = document.getElementById("intro");
+const year = document.getElementById("year");
+
+document.body.classList.add("intro-active");
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    intro.style.display = "none";
+    document.body.classList.remove("intro-active");
+  }, 3200);
+});
+
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
 function displayKnives() {
   knifeGrid.innerHTML = "";
@@ -68,6 +94,12 @@ function closeKnifeModal() {
 
 menuBtn.addEventListener("click", () => {
   navLinks.classList.toggle("show");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("show");
+  });
 });
 
 closeModal.addEventListener("click", closeKnifeModal);
